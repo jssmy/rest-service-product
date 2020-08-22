@@ -1,7 +1,6 @@
 {
   "name": "functions",
   "scripts": {
-    "start:heroku": "node node dist/server.js",
     "lint": "tslint --project tsconfig.json",
     "build": "tsc",
     "serve": "npm run build",

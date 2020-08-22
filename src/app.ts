@@ -16,7 +16,7 @@ const cors = require('cors');
 app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded());
-app.set('port', 3000);
+app.set('port', process.env.PORT || 3000);
 
 
 /**
