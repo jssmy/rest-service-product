@@ -1,0 +1,39 @@
+{
+  "name": "functions",
+  "scripts": {
+    "lint": "tslint --project tsconfig.json",
+    "build": "tsc",
+    "serve": "npm run build",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run build && node dist/server.js",
+    "watch-ts": "tsc -w",
+    "watch-node": "npm run build && nodemon dist/server.js"
+  },
+  "engines": {
+    "node": "10.17.0",
+    "npm": "6.11.3"
+  },
+  "main": "dist/index.js",
+  "dependencies": {
+    "@types/express": "^4.17.7",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.1.1",
+    "moment": "^2.27.0",
+    "nodemon": "^2.0.4",
+    "typescript": "^3.8.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.1.1",
+    "moment": "^2.27.0",
+    "nodemon": "^2.0.4",
+    "tslint": "^5.20.1",
+    "typescript": "^3.8.0"
+  },
+  "private": true
+}
