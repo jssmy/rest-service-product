@@ -34,7 +34,20 @@ export class ProductController extends Controller{
             
         } catch (error) {
             console.error(error);
-            res.send(500).send(error)
+            res.status(500).send(error)
+        }
+    }
+
+    public static async findBySlug(req: Request, res: Response) {
+        console.log(req.params.slug);
+        try {
+            await this.collection().where('slug', '==', req.params.slug).get().then(query => {
+                const product = query.docs[0].data();
+                res.status(200).send(product);
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).send(error);
         }
     }
 }

@@ -26,9 +26,14 @@ app.get('/', (req, res) => {
     res.send('default');
 });
 
-
+// POST CREATE PRODUCT
 app.post('/api/product/create', async (req, res) => await ProductController.create(req, res));
 
+// GET PRODUCTO RECOMMENDED
 app.get('/api/product/recommended', async (req, res) => await ProductController.recommended(req, res));
+
+// FIND PRODUCT B7Y SLUG
+app.get('/api/product/find/:slug', async (req, res) => await ProductController.findBySlug(req, res));
+
 
 export default app;
