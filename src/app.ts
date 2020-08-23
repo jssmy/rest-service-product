@@ -29,4 +29,6 @@ app.get('/', (req, res) => {
 
 app.post('/api/product/create', async (req, res) => await ProductController.create(req, res));
 
+app.get('/api/product/recommended', async (req, res) => await ProductController.recommended(req, res));
+
 export default app;

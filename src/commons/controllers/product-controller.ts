@@ -24,4 +24,17 @@ export class ProductController extends Controller{
             res.status(400).send(error);
         }
     }
+
+    public static async recommended(req: Request, res: Response) {
+        try {
+            await this.collection().limit(12).get().then(query => {
+                const products = query.docs.map(doct => doct.data());
+                res.status(200).send(products);
+            }); 
+            
+        } catch (error) {
+            console.error(error);
+            res.send(500).send(error)
+        }
+    }
 }
