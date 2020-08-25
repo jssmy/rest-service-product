@@ -7,6 +7,7 @@ import { Helper } from "../helpers/helper";
 import { Request, Response }  from 'express';
 export class ProductController extends Controller{
     protected static collectionName = 'products';
+    protected static sizeCollection = 12;
     public static async create(req: Request, res: Response) {
         try {
             const product: IProduct = req.body;
@@ -27,7 +28,8 @@ export class ProductController extends Controller{
 
     public static async recommended(req: Request, res: Response) {
         try {
-            await this.collection().limit(12).get().then(query => {
+            const page: number = req.body.paginate ? req.body.paginate : 1;
+            await this.collection().limit(this.sizeCollection).offset(this.sizeCollection * (page - 1)).get().then(query => {
                 const products = query.docs.map(doct => doct.data());
                 res.status(200).send(products);
             }); 
@@ -39,7 +41,6 @@ export class ProductController extends Controller{
     }
 
     public static async findBySlug(req: Request, res: Response) {
-        console.log(req.params.slug);
         try {
             await this.collection().where('slug', '==', req.params.slug).get().then(query => {
                 const product = query.docs[0].data();
