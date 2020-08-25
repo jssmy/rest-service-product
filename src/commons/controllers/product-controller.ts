@@ -28,7 +28,7 @@ export class ProductController extends Controller{
 
     public static async recommended(req: Request, res: Response) {
         try {
-            const page: number = req.body.paginate ? req.body.paginate : 1;
+            const page: number = Number.parseInt(req.params.paginate) ? Number.parseInt(req.params.paginate) : 1;
             await this.collection().limit(this.sizeCollection).offset(this.sizeCollection * (page - 1)).get().then(query => {
                 const products = query.docs.map(doct => doct.data());
                 res.status(200).send(products);
